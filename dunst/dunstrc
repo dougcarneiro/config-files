@@ -1,0 +1,13 @@
+[timeouts]
+timeout = 0
+
+[global]
+mouse_left_click = "do_action"
+mouse_right_click = "close_current"
+icon_position = left
+icon_path = "/usr/share/icons:/home/douglas/.icons"
+font = MesloLGS Nerd Font Mono 13
+frame_width = 2
+corner_radius = 2
+padding = 8
+separator_height = 2
