@@ -23,6 +23,7 @@ exec_always --no-startup-id ~/.config/i3/scripts/workspace-setup.sh
 exec --no-startup-id ~/.config/i3/scripts/disable-screensaver.sh
 
 exec --no-startup-id picom
+exec --no-startup-id dunst
 #exec --no-startup-id xrdb -merge ~/.Xresources
 #exec_always --no-startup-id setxkbmap -option ctrl:nocaps
 
