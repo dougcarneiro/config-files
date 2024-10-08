@@ -1,0 +1,13 @@
+#!/bin/bash
+
+sleep 2
+
+# Detectar monitores conectados
+if xrandr | grep "HDMI-1 connected"; then
+  # Monitor externo conectado
+  xrandr --output eDP-1 --right-of HDMI-1 --auto --output HDMI-1 --auto
+else
+  # Apenas monitor do laptop
+  xrandr --output HDMI-1 --off --output eDP-1 --auto
+fi
+

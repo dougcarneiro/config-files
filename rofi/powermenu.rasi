@@ -1,0 +1,25 @@
+/* powermenu.rasi */
+configuration {
+    font: "Fira Code 12"; /* Reduza o tamanho da fonte */
+    show-icons: false; /* Ativa a exibição de ícones */
+}
+
+window {
+    width: 20%; /* Ajusta a largura da janela */
+    border-radius: 8px;
+}
+
+listview {
+    lines: 4; /* Número de linhas visíveis (ajusta a altura) */
+}
+
+element {
+    padding: 5px 10px; /* Reduz o espaçamento interno */
+    border-radius: 5px; /* Ajusta o arredondamento */
+}
+
+element.selected {
+    background-color: #6272a4;
+    foreground: #6272a4;
+}
+
