@@ -20,6 +20,7 @@ set $mod Mod4
 exec_always --no-startup-id ~/.config/i3/scripts/keyboard.sh
 exec_always --no-startup-id ~/.config/i3/scripts/detect-monitors.sh
 exec_always --no-startup-id ~/.config/i3/scripts/workspace-setup.sh
+exec_always --no-startup-id ~/.config/i3/scripts/set-wallpaper.sh
 exec --no-startup-id ~/.config/i3/scripts/disable-screensaver.sh
 
 exec --no-startup-id picom
@@ -30,7 +31,6 @@ exec --no-startup-id dunst
 # Loading polybar
 exec_always --no-startup-id ~/.config/polybar/scripts/launch_polybar.sh
 
-exec_always --no-startup-id sh -c "sleep 1 && feh --bg-center ~/Pictures/Wallpapers/21:9/undefined\ -\ Imgur\ \(1\).jpg"
 
 # Loading rofi scripts
 bindsym $mod+Shift+e exec ~/.config/rofi/scripts/powermenu.sh

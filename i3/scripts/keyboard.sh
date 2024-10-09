@@ -1,2 +1,3 @@
 #!/bin/bash
-setxkbmap -option "grp:ctrl_alt_toggle,compose:ralt"
+
+setxkbmap -model pc105 -layout us,br -option grp:ctrl_space_toggle,compose:ralt
