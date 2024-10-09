@@ -1,13 +1,32 @@
 [timeouts]
 timeout = 0
 
+[urgency_low]
+frame_color = "#cba6f7"
+background = "#1e1e2e"
+foreground = "#cdd6f4"
+
+[urgency_normal]
+frame_color = "#cba6f7"
+background = "#1e1e2e"
+foreground = "#cdd6f4"
+
+[urgency_critical]
+frame_color = "#cba6f7"
+background = "#1e1e2e"
+foreground = "#cdd6f4"
+
 [global]
-mouse_left_click = "do_action"
+mouse_left_click = "close_current"
 mouse_right_click = "close_current"
 icon_position = left
 icon_path = "/usr/share/icons:/home/douglas/.icons"
 font = MesloLGS Nerd Font Mono 13
 frame_width = 2
-corner_radius = 2
+corner_radius = 3
 padding = 8
 separator_height = 2
+width = 450   # Largura da notificação
+height = 150  # Altura da notificação
+separator_height = 2
+format = "<b>%s</b>\n\n%b"

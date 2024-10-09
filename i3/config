@@ -89,13 +89,12 @@ bindsym XF86MonBrightnessDown exec --no-startup-id "brightnessctl s 5%-"
 floating_modifier $mod
 
 # Applications shortcuts
-bindsym $mod+x exec alacritty -e tmux
 bindsym $mod+n exec GTK_THEME=Adwaita:dark nautilus
 bindsym $mod+f exec firefox
 bindsym $mod+c exec GTK_THEME=Adwaita:dark gnome-calculator
 bindsym $mod+g exec google-chrome-stable
 bindsym $mod+b exec flatpak run com.bitwarden.deskop
-bindsym $mod+Return exec alacritty
+bindsym $mod+d exec alacritty
 bindsym $mod+v exec alacritty -e nvim
 bindsym $mod+m exec GTK_THEME=Adwaita:dark geary
 bindsym $mod+s exec flatpak run com.spotify.Client
@@ -104,7 +103,7 @@ bindsym $mod+s exec flatpak run com.spotify.Client
 bindsym $mod+q kill
 
 # start rofi (a program launcher)
-bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+Return exec --no-startup-id rofi -show drun
 bindsym $mod+Menu exec --no-startup-id rofi -show combi
 #bindsym $mod+Tab exec --no-startup-id rofi -show window
 
