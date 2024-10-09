@@ -23,3 +23,7 @@ style = "Italic"
 [font.normal]
 family = "MesloLGS Nerd Font Mono"
 style = "Regular"
+
+[shell]
+program = "/usr/bin/tmux"
+args = ["new-session", "-A", "-s", "misc"]
