@@ -1,25 +1,25 @@
 /* powermenu.rasi */
+@import "catppuccin-mocha.rasi"  /* Importe o tema base */
+
 configuration {
-    font: "Fira Code 12"; /* Reduza o tamanho da fonte */
-    show-icons: false; /* Ativa a exibição de ícones */
+    show-icons: false;
 }
 
 window {
-    width: 20%; /* Ajusta a largura da janela */
-    border-radius: 8px;
+    padding: 5px 10px;
+    width: 20%;
+    height: 20%;
 }
 
 listview {
-    lines: 4; /* Número de linhas visíveis (ajusta a altura) */
+    lines: 4;
 }
 
 element {
-    padding: 5px 10px; /* Reduz o espaçamento interno */
-    border-radius: 5px; /* Ajusta o arredondamento */
+    margin: 5px 0;
+    padding: 5px 5px;
 }
 
 element.selected {
-    background-color: #6272a4;
-    foreground: #6272a4;
 }
 
