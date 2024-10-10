@@ -31,3 +31,7 @@ width = 450   # Largura da notificação
 height = 150  # Altura da notificação
 separator_height = 2
 format = "<span foreground='#f7b1c3'><b>%s</b></span>\n\n%b"
+show_indicators = false
+icon_position = "left"
+vertical_alignment = "top"
+default_icon = "~/.config/dunst/icons/notification-icon.svg"
