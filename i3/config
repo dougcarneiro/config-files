@@ -14,13 +14,10 @@ for_window [class="^.*"] border pixel 1
 set $mod Mod4
 # set $mod Mod1
 
-#exec_always --no-startup-id xrandr --output HDMI-1 --primary --auto --output eDP-1 --right-of HDMI-1
 
 # Loading i3 scripts
 exec_always --no-startup-id ~/.config/i3/scripts/keyboard.sh
-exec_always --no-startup-id ~/.config/i3/scripts/detect-monitors.sh
-exec_always --no-startup-id ~/.config/i3/scripts/workspace-setup.sh
-exec_always --no-startup-id ~/.config/i3/scripts/set-wallpaper.sh
+exec_always --no-startup-id ~/.config/i3/scripts/startup.sh
 exec --no-startup-id ~/.config/i3/scripts/disable-screensaver.sh
 
 exec --no-startup-id picom
@@ -30,7 +27,6 @@ exec --no-startup-id dunst
 
 # Loading polybar
 exec_always --no-startup-id ~/.config/polybar/scripts/launch_polybar.sh
-
 
 # Loading rofi scripts
 bindsym $mod+Shift+e exec ~/.config/rofi/scripts/powermenu.sh
@@ -81,8 +77,10 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl previous && $refresh_i3stat
 bindsym XF86AudioStop exec --no-startup-id playerctl stop && $refresh_i3status
 
 # Brightness
-bindsym XF86MonBrightnessUp exec --no-startup-id "brightnessctl s +5%"
-bindsym XF86MonBrightnessDown exec --no-startup-id "brightnessctl s 5%-"
+# bindsym XF86MonBrightnessUp exec --no-startup-id "brightnessctl s +5%"
+# bindsym XF86MonBrightnessDown exec --no-startup-id "brightnessctl s 5%-"
+bindsym XF86MonBrightnessUp exec --no-startup-id "brightnessctl s +5% && ~/.config/polybar/scripts/brightness_notify.sh"
+bindsym XF86MonBrightnessDown exec --no-startup-id "brightnessctl s 5%- && ~/.config/polybar/scripts/brightness_notify.sh"
 
 
 # Use Mouse+$mod to drag floating windows to their wanted position
