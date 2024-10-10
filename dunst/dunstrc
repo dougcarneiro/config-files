@@ -17,6 +17,7 @@ background = "#1e1e2e"
 foreground = "#cdd6f4"
 
 [global]
+markup = full
 mouse_left_click = "close_current"
 mouse_right_click = "close_current"
 icon_position = left
@@ -29,4 +30,4 @@ separator_height = 2
 width = 450   # Largura da notificação
 height = 150  # Altura da notificação
 separator_height = 2
-format = "<b>%s</b>\n\n%b"
+format = "<span foreground='#f7b1c3'><b>%s</b></span>\n\n%b"
