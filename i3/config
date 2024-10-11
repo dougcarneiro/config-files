@@ -14,7 +14,6 @@ for_window [class="^.*"] border pixel 1
 set $mod Mod4
 # set $mod Mod1
 
-
 # Loading i3 scripts
 exec_always --no-startup-id ~/.config/i3/scripts/keyboard.sh
 exec_always --no-startup-id ~/.config/i3/scripts/startup.sh
@@ -88,7 +87,7 @@ bindsym $mod+n exec GTK_THEME=Adwaita:dark nautilus
 bindsym $mod+f exec firefox
 bindsym $mod+c exec GTK_THEME=Adwaita:dark gnome-calculator
 bindsym $mod+g exec google-chrome-stable
-bindsym $mod+b exec flatpak run com.bitwarden.deskop
+bindsym $mod+b exec flatpak run com.bitwarden.desktop
 bindsym $mod+d exec alacritty
 bindsym $mod+v exec alacritty -e nvim
 bindsym $mod+m exec GTK_THEME=Adwaita:dark geary
