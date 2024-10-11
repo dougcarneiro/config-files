@@ -24,13 +24,13 @@ icon_position = left
 icon_path = "/usr/share/icons:/home/douglas/.icons"
 font = MesloLGS Nerd Font Mono 13
 frame_width = 1
-corner_radius = 3
+corner_radius = 1
 padding = 8
 separator_height = 2
 width = 400   # Largura da notificação
 height = 150  # Altura da notificação
 separator_height = 2
-format = "<span foreground='#f7b1c3'><b>%s</b></span>\n\n%b"
+format = "<span foreground='#f7b1c3'><b>%s</b></span>\n%b"
 show_indicators = false
 icon_position = "left"
 vertical_alignment = "top"
