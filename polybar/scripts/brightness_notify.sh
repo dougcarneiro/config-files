@@ -3,15 +3,17 @@
 # Arquivo temporário para armazenar o valor de brilho
 BRIGHTNESS_FILE="/tmp/brightness_value"
 
-# Pega o valor de brilho atual
+if [ ! -f "$BRIGHTNESS_FILE" ]; then
+    echo "󰃠 $(brightnessctl g -P)%" > "$BRIGHTNESS_FILE"
+fi
+
 get_brightness() {
     brightnessctl g | awk -v max=$(brightnessctl m) '{printf "%.0f", ($1/max)*100}'
 }
 
-# Atualiza a barra do polybar com o brilho atual e mostra a notificação
 update_polybar() {
     # Pega o valor de brilho e escreve no arquivo temporário
-    BRIGHTNESS=$(get_brightness)
+    BRIGHTNESS=$(get_brightness g -P)
     echo "󰃠 $BRIGHTNESS%" > "$BRIGHTNESS_FILE"
 
     # Atualiza o módulo da polybar
