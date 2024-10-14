@@ -336,7 +336,7 @@ require('lazy').setup({
         },
       }
       require('gitsigns').setup(opts)
-      vim.keymap.set('n', '<leader>gp', ':Gitsigns preview_hunk<CR>', { silent = true, desc = 'Preview hunk' })
+      vim.keymap.set('n', 'gp', ':Gitsigns preview_hunk<CR>', { silent = true, desc = 'Preview hunk' })
       vim.keymap.set('n', '<leader>gt', ':Gitsigns toggle_current_line_blame<CR>', { silent = true, desc = 'Toggle current line blame' })
       vim.keymap.set('n', '<leader>gd', ':Gitsigns diffthis<CR>', { silent = true, desc = 'Show diff view' })
       vim.keymap.set('n', 'gh', ':Gitsigns next_hunk<CR>', { silent = true, desc = 'Go to next hunk' })
@@ -962,6 +962,28 @@ require('lazy').setup({
         },
       }
 
+      require('lspconfig')['omnisharp'].setup {
+        cmd = { 'omnisharp', '--languageserver', '--hostPID', tostring(vim.fn.getpid()) },
+        filetypes = { 'cs', 'vb' },
+        capabilities = capabilities,
+        settings = {
+          omnisharp = {
+            enableRoslynAnalyzers = true,
+            organizeImportsOnFormat = true,
+            enableEditorConfigSupport = true,
+          },
+        },
+        on_attach = function(client, bufnr)
+          if client.server_capabilities.documentFormattingProvider then
+            vim.cmd [[
+        augroup LspFormatting
+          autocmd! * <buffer>
+          autocmd BufWritePre <buffer> lua vim.lsp.buf.format({ async = true })
+        augroup END
+      ]]
+          end
+        end,
+      }
       -- Ensure the servers and tools above are installed
       --  To check the current status of installed tools and/or manually install
       --  other tools, you can run
@@ -1000,6 +1022,7 @@ require('lazy').setup({
         'clangd',
         'phpactor',
         'vetur-vls',
+        'omnisharp',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -1059,6 +1082,7 @@ require('lazy').setup({
         cpp = { 'clang-format' },
         java = { 'clang-format' },
         vue = { 'prettier' },
+        -- cs = { 'clang-format' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
