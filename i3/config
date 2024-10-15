@@ -31,9 +31,9 @@ exec_always --no-startup-id ~/.config/polybar/scripts/launch_polybar.sh
 bindsym $mod+Shift+e exec ~/.config/rofi/scripts/powermenu.sh
 
 # Screenshot shortcuts
-bindsym Shift+Print exec --no-startup-id sh -c 'maim "$HOME/Pictures/Screenshots/Screenshot from $(date +%Y-%m-%d\ %H-%M-%S).png" && xclip -selection clipboard -t image/png -i "$HOME/Pictures/Screenshots/$(ls -t $HOME/Pictures/Screenshots | head -n 1)"'
-bindsym $mod+Print exec --no-startup-id sh -c 'maim --window $(xdotool getactivewindow) "$HOME/Pictures/Screenshots/Screenshot from $(date +%Y-%m-%d\ %H-%M-%S).png" && xclip -selection clipboard -t image/png -i "$HOME/Pictures/Screenshots/$(ls -t $HOME/Pictures/Screenshots | head -n 1)"'
-bindsym Print exec --no-startup-id sh -c 'maim --select "$HOME/Pictures/Screenshots/Screenshot from $(date +%Y-%m-%d\ %H-%M-%S).png" && xclip -selection clipboard -t image/png -i "$HOME/Pictures/Screenshots/$(ls -t $HOME/Pictures/Screenshots | head -n 1)"'
+bindsym Print exec --no-startup-id sh -c 'FILE="$HOME/Pictures/Screenshots/Screenshot from $(date +%Y-%m-%d\ %H-%M-%S).png" && maim --select "$FILE" && xclip -selection clipboard -t image/png -i "$FILE"'
+bindsym Shift+Print exec --no-startup-id sh -c 'FILE="$HOME/Pictures/Screenshots/Screenshot from $(date +%Y-%m-%d\ %H-%M-%S).png" && maim "$FILE" && xclip -selection clipboard -t image/png -i "$FILE"'
+bindsym $mod+Print exec --no-startup-id sh -c 'FILE="$HOME/Pictures/Screenshots/Screenshot from $(date +%Y-%m-%d\ %H-%M-%S).png" && maim --window $(xdotool getactivewindow) "$FILE" && xclip -selection clipboard -t image/png -i "$FILE"'
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
