@@ -30,14 +30,10 @@ exec_always --no-startup-id ~/.config/polybar/scripts/launch_polybar.sh
 # Loading rofi scripts
 bindsym $mod+Shift+e exec ~/.config/rofi/scripts/powermenu.sh
 
-bindsym Print exec maim "/home/$USER/Pictures/Screenshots/$(date).jpg"
-bindsym $mod+Print exec maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/Screenshots/$(date).jpg"
-bindsym Shift+Print exec maim --select "/home/$USER/Pictures/Screenshots/$(date).jpg"
-
-## Clipboard Screenshots
-bindsym Ctrl+Print exec maim | xclip -selection clipboard -t image/png
-bindsym Ctrl+$mod+Print exec maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
-bindsym Ctrl+Shift+Print exec maim --select | xclip -selection clipboard -t image/png
+# Screenshot shortcuts
+bindsym Shift+Print exec --no-startup-id sh -c 'maim "$HOME/Pictures/Screenshots/Screenshot from $(date +%Y-%m-%d\ %H-%M-%S).png" && xclip -selection clipboard -t image/png -i "$HOME/Pictures/Screenshots/$(ls -t $HOME/Pictures/Screenshots | head -n 1)"'
+bindsym $mod+Print exec --no-startup-id sh -c 'maim --window $(xdotool getactivewindow) "$HOME/Pictures/Screenshots/Screenshot from $(date +%Y-%m-%d\ %H-%M-%S).png" && xclip -selection clipboard -t image/png -i "$HOME/Pictures/Screenshots/$(ls -t $HOME/Pictures/Screenshots | head -n 1)"'
+bindsym Print exec --no-startup-id sh -c 'maim --select "$HOME/Pictures/Screenshots/Screenshot from $(date +%Y-%m-%d\ %H-%M-%S).png" && xclip -selection clipboard -t image/png -i "$HOME/Pictures/Screenshots/$(ls -t $HOME/Pictures/Screenshots | head -n 1)"'
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -98,8 +94,8 @@ bindsym $mod+q kill
 
 # start rofi (a program launcher)
 bindsym $mod+Return exec --no-startup-id rofi -show drun
-bindsym $mod+Menu exec --no-startup-id rofi -show combi
-#bindsym $mod+Tab exec --no-startup-id rofi -show window
+bindsym $mod+space exec --no-startup-id rofi -show combi
+bindsym $mod+Menu exec --no-startup-id rofi -show window
 
 # change focus
 bindsym $mod+h focus left
