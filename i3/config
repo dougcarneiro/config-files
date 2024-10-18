@@ -15,7 +15,6 @@ set $mod Mod4
 # set $mod Mod1
 
 # Loading i3 scripts
-exec_always --no-startup-id ~/.config/i3/scripts/keyboard.sh
 exec_always --no-startup-id ~/.config/i3/scripts/startup.sh
 exec --no-startup-id ~/.config/i3/scripts/disable-screensaver.sh
 

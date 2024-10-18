@@ -20,13 +20,13 @@ assign_workspaces_to_monitor() {
 if echo "$CONNECTED_MONITORS" | grep -q "$PRIMARY_MONITOR"; then
   # Se ambos os monitores estiverem conectados
   if echo "$CONNECTED_MONITORS" | grep -q "$SECONDARY_MONITOR"; then
-    assign_workspaces_to_monitor "$PRIMARY_MONITOR" 1 2 3 4 5
-    assign_workspaces_to_monitor "$SECONDARY_MONITOR" 6 7 8 9 10
+    assign_workspaces_to_monitor "$PRIMARY_MONITOR" 5 4 3 2 1
+    assign_workspaces_to_monitor "$SECONDARY_MONITOR" 10 9 8 7 6
   else
     # Se apenas o PRIMARY_MONITOR estiver conectado
-    assign_workspaces_to_monitor "$PRIMARY_MONITOR" 1 2 3 4 5 6 7 8 9 10
+    assign_workspaces_to_monitor "$PRIMARY_MONITOR" 10 9 8 7 6 5 4 3 2 1
   fi
 else
   # Se apenas o SECONDARY_MONITOR estiver conectado ou se nenhum dos dois
-  assign_workspaces_to_monitor "$SECONDARY_MONITOR" 1 2 3 4 5 6 7 8 9 10
+  assign_workspaces_to_monitor "$SECONDARY_MONITOR" 10 9 8 7 6 5 4 3 2 1
 fi
