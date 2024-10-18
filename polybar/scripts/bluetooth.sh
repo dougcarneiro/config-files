@@ -12,7 +12,7 @@ if [ "$power_status" ]; then
             # Checks if connected device outputs its battery percentage
             device_percentage=$(bluetoothctl info "$audio_output_mac_address" | grep "Battery" | awk '{print $4}' | tr -d '()')
             if [ "$device_percentage" ]; then
-                echo " $device_percentage%"
+                echo " $device_percentage%"
             fi
         else
             echo " "

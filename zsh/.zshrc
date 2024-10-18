@@ -166,6 +166,8 @@ export PATH=$ANDROID_HOME/build-tools:$PATH
 export JAVA_HOME=$(asdf where java)
 export PATH=$JAVA_HOME/bin:$PATH
 export PATH=$HOME/.yarn/bin:$PATH
+export PATH="$PATH:$HOME/.dotnet/tools"
+export DOTNET_ROOT=$(asdf where dotnet-core)
 source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
 
 export EDITOR="nvim"
