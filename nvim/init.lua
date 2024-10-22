@@ -205,6 +205,12 @@ vim.keymap.set('n', '<leader>tv', toggle_diag_virtual_text, { silent = true, nor
 -- Save
 vim.keymap.set('n', '<C-s>', ':w<CR>', { silent = true, noremap = true, desc = 'Write to buffer' })
 
+-- Quickfix List
+vim.keymap.set('n', ']o', ':copen<CR>', { silent = true, noremap = true, desc = 'Open Quickfix list' })
+vim.keymap.set('n', ']c', ':cclose<CR>', { silent = true, noremap = true, desc = 'Close Quickfix list' })
+vim.keymap.set('n', ']n', ':cnext<CR>', { silent = true, noremap = true, desc = 'Go to next Quickfix list line' })
+vim.keymap.set('n', ']p', ':cprev<CR>', { silent = true, noremap = true, desc = 'Go to previous Quickfix list line' })
+
 -- Tab navigation
 vim.keymap.set('n', '<M-.>', ':tabnext<CR>', { silent = true, noremap = true, desc = 'Go to next tab' })
 vim.keymap.set('n', '<M-,>', ':tabprev<CR>', { silent = true, noremap = true, desc = 'Go to previous tab' })
