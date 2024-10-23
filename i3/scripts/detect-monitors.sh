@@ -1,5 +1,6 @@
 #!/bin/bash
 
+sleep 1
 
 if xrandr | grep "HDMI-1 connected"; then
   # Monitor externo conectado
