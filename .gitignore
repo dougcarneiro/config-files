@@ -1,4 +1,3 @@
 tags
-test.sh
 .luarc.json
-polybar/scripts/.brightness_value
+.brightness_value

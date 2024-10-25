@@ -25,3 +25,10 @@ then
     xss-lock --transfer-sleep-lock -- i3lock --nofork -i /tmp/lock_screen.png &
 fi
 
+BRIGHTNESS_LEVEL="$HOME/.config/i3/.brightness_value"
+
+if [ ! -f "$BRIGHTNESS_FILE" ]; then
+    echo "$(brightnessctl g -P)" > "$BRIGHTNESS_LEVEL"
+fi
+
+brightnessctl s "$BRIGHTNESS_LEVEL"
