@@ -22,7 +22,6 @@ close_all = "mod1+Return"
 mouse_left_click = "do_action, close_current"
 mouse_right_click = "close_current"
 mouse_middle_click= "close_all"
-icon_position = left
 icon_path = "/usr/share/icons:/home/douglas/.icons"
 font = MesloLGS Nerd Font Mono 13
 frame_width = 1
@@ -34,6 +33,6 @@ height = 150  # Altura da notificação
 separator_height = 2
 format = "<span foreground='#f7b1c3'><b>%s</b></span>\n%b"
 show_indicators = false
-icon_position = "left"
-vertical_alignment = "top"
+icon_position = left
+vertical_alignment = top
 default_icon = "~/.config/dunst/icons/notification-icon.svg"
