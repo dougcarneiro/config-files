@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# deprecated
+# using dunst to notify brightness changes instead
+
 BRIGHTNESS_FILE="$HOME/.config/polybar/scripts/.brightness_value"
 
 if [ ! -f "$BRIGHTNESS_FILE" ]; then
