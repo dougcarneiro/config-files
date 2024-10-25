@@ -29,9 +29,10 @@ exec_always --no-startup-id ~/.config/polybar/scripts/launch_polybar.sh
 bindsym $mod+Shift+e exec ~/.config/rofi/scripts/powermenu.sh
 
 # Screenshot shortcuts
-bindsym Print exec --no-startup-id sh -c 'FILE="$HOME/Pictures/Screenshots/Screenshot from $(date +%Y-%m-%d\ %H-%M-%S).png" && maim --select "$FILE" && xclip -selection clipboard -t image/png -i "$FILE"'
-bindsym Shift+Print exec --no-startup-id sh -c 'FILE="$HOME/Pictures/Screenshots/Screenshot from $(date +%Y-%m-%d\ %H-%M-%S).png" && maim "$FILE" && xclip -selection clipboard -t image/png -i "$FILE"'
-bindsym $mod+Print exec --no-startup-id sh -c 'FILE="$HOME/Pictures/Screenshots/Screenshot from $(date +%Y-%m-%d\ %H-%M-%S).png" && maim --window $(xdotool getactivewindow) "$FILE" && xclip -selection clipboard -t image/png -i "$FILE"'
+
+bindsym Print exec --no-startup-id sh -c 'FILE="$HOME/Pictures/Screenshots/Screenshot from $(date +%Y-%m-%d\ %H-%M-%S).png" && maim --select "$FILE" && xclip -selection clipboard -t image/png -i "$FILE" && dunstify -h string:x-dunst-stack-tag:"unique_tag" "Screenshot saved" "Imaged saved in $FILE and copied to the clipboard." --timeout=5000 --icon="$FILE"'
+bindsym Shift+Print exec --no-startup-id sh -c 'FILE="$HOME/Pictures/Screenshots/Screenshot from $(date +%Y-%m-%d\ %H-%M-%S).png" && maim "$FILE" && xclip -selection clipboard -t image/png -i "$FILE" && dunstify -h string:x-dunst-stack-tag:"unique_tag" "Screenshot saved" "Imaged saved in $FILE and copied to the clipboard." --timeout=5000 --icon="$FILE"'
+bindsym $mod+Print exec --no-startup-id sh -c 'FILE="$HOME/Pictures/Screenshots/Screenshot from $(date +%Y-%m-%d\ %H-%M-%S).png" && maim --window $(xdotool getactivewindow) "$FILE" && xclip -selection clipboard -t image/png -i "$FILE" && dunstify -h string:x-dunst-stack-tag:"unique_tag" "Screenshot saved" "Imaged saved in $FILE and copied to the clipboard." --timeout=5000 --icon="$FILE"'
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -65,8 +66,9 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl previous && $refresh_i3stat
 bindsym XF86AudioStop exec --no-startup-id playerctl stop && $refresh_i3status
 
 # Brightness
-bindsym XF86MonBrightnessUp exec --no-startup-id "brightnessctl s +5% && ~/.config/polybar/scripts/brightness_notify.sh"
-bindsym XF86MonBrightnessDown exec --no-startup-id "brightnessctl s 5%- && ~/.config/polybar/scripts/brightness_notify.sh"
+bindsym XF86MonBrightnessUp exec --no-startup-id "brightnessctl s +5% && notify-send 'Brilho' $(brightnessctl g -P)'%' -i /home/douglas/config-files/dunst/icons/preferences-system-brightness-lock.svg --expire-time 5000 --hint=string:x-canonical-private-synchronous:'unique_id'"
+
+bindsym XF86MonBrightnessDown exec --no-startup-id "brightnessctl s 5%- && notify-send 'Brilho' $(brightnessctl g -P)'%' -i /home/douglas/config-files/dunst/icons/preferences-system-brightness-lock.svg --expire-time 5000 --hint=string:x-canonical-private-synchronous:'unique_id'"
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
