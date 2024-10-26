@@ -3,7 +3,7 @@
 # deprecated
 # using dunst to notify brightness changes instead
 
-BRIGHTNESS_FILE="$HOME/.config/polybar/scripts/.brightness_value"
+BRIGHTNESS_FILE="$HOME/.config/polybar/scripts/.brightness-value"
 
 if [ ! -f "$BRIGHTNESS_FILE" ]; then
     echo "󰃠 $(brightnessctl g -P)%" > "$BRIGHTNESS_FILE"

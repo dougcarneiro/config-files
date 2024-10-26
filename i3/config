@@ -17,13 +17,12 @@ set $mod Mod4
 # Loading i3 scripts
 exec_always --no-startup-id ~/.config/i3/scripts/startup.sh
 exec --no-startup-id ~/.config/i3/scripts/disable-screensaver.sh
+exec --no-startup-id ~/.config/i3/scripts/keyboard.sh
+exec --no-startup-id ~/.config/i3/scripts/config-touchpad.sh
 
 exec --no-startup-id xrdb -merge ~/.Xresources
 
 exec --no-startup-id dunst
-
-# Loading polybar
-exec_always --no-startup-id ~/.config/polybar/scripts/launch_polybar.sh
 
 # Loading rofi scripts
 bindsym $mod+Shift+e exec ~/.config/rofi/scripts/powermenu.sh
@@ -33,7 +32,7 @@ bindsym Print exec --no-startup-id sh -c 'FILE="$HOME/Pictures/Screenshots/Scree
 bindsym Shift+Print exec --no-startup-id sh -c 'FILE="$HOME/Pictures/Screenshots/Screenshot from $(date +%Y-%m-%d\ %H-%M-%S).png" && maim "$FILE" && xclip -selection clipboard -t image/png -i "$FILE" && dunstify -h string:x-dunst-stack-tag:"unique_tag" "Screenshot saved" "Imaged saved in $FILE and copied to the clipboard." --timeout=5000 --icon="$FILE"'
 bindsym $mod+Print exec --no-startup-id sh -c 'FILE="$HOME/Pictures/Screenshots/Screenshot from $(date +%Y-%m-%d\ %H-%M-%S).png" && maim --window $(xdotool getactivewindow) "$FILE" && xclip -selection clipboard -t image/png -i "$FILE" && dunstify -h string:x-dunst-stack-tag:"unique_tag" "Screenshot saved" "Imaged saved in $FILE and copied to the clipboard." --timeout=5000 --icon="$FILE"'
 
-bindsym Ctrl+space exec --no-startup-id ~/.config/i3/scripts/keyboard-layout.sh
+bindsym Ctrl+space exec --no-startup-id ~/.config/i3/scripts/keyboard-layout-switch.sh
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -67,11 +66,9 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl previous && $refresh_i3stat
 bindsym XF86AudioStop exec --no-startup-id playerctl stop && $refresh_i3status
 
 # Brightness
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl s $(($(brightnessctl g -P)+5))% && BRIGHTNESS=$(brightnessctl g -P) && notify-send "Brightness $BRIGHTNESS%" -i $HOME/.config/dunst/icons/preferences-system-brightness-lock.svg --expire-time 5000 --hint=string:x-canonical-private-synchronous:"unique_id" --hint=int:value:$BRIGHTNESS -u low
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl s $(($(brightnessctl g -P)+5))% && BRIGHTNESS=$(brightnessctl g -P) && notify-send "Brightness $BRIGHTNESS%" -i $HOME/.config/dunst/icons/preferences-system-brightness-lock.svg --expire-time 5000 --hint=string:x-canonical-private-synchronous:"unique_id" --hint=int:value:$BRIGHTNESS -u low && echo "$BRIGHTNESS" > ~/.config/i3/.brightness-value
 
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl s $(($(brightnessctl g -P)-5))% && BRIGHTNESS=$(brightnessctl g -P) && notify-send "Brightness $BRIGHTNESS%" -i $HOME/.config/dunst/icons/preferences-system-brightness-lock.svg --expire-time 5000 --hint=string:x-canonical-private-synchronous:"unique_id" --hint=int:value:$BRIGHTNESS -u low
-
-
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl s $(($(brightnessctl g -P)-5))% && BRIGHTNESS=$(brightnessctl g -P) && notify-send "Brightness $BRIGHTNESS%" -i $HOME/.config/dunst/icons/preferences-system-brightness-lock.svg --expire-time 5000 --hint=string:x-canonical-private-synchronous:"unique_id" --hint=int:value:$BRIGHTNESS -u low && echo "$BRIGHTNESS" > ~/.config/i3/.brightness-value
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -191,15 +188,15 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize shrink height 10 px or 10 ppt
         bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Down resize shrink height 10 px or 10 ppt
+        bindsym Up resize grow height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
 
         # back to normal: Enter or Escape or $mod+r
