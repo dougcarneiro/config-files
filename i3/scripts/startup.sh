@@ -32,3 +32,7 @@ if [ ! -f "$BRIGHTNESS_FILE" ]; then
 fi
 
 brightnessctl s "$BRIGHTNESS_LEVEL"
+
+layouts=$(setxkbmap -query | grep layout | awk '{print $2}')
+IFS=',' read -r -a layouts_list <<< "$layouts"
+echo "${layouts_list[0]}" > ~/.config/i3/.keyboard-layout
