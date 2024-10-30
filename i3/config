@@ -74,9 +74,10 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl s $(($(brightne
 floating_modifier $mod
 
 # Applications shortcuts
-bindsym $mod+n exec nautilus
+bindsym $mod+n exec thunar
 bindsym $mod+f exec firefox
-bindsym $mod+c exec gnome-calculator
+for_window [class="Galculator"] floating enable
+bindsym $mod+c exec galculator
 bindsym $mod+g exec google-chrome-stable
 bindsym $mod+b exec flatpak run com.bitwarden.desktop
 bindsym $mod+d exec alacritty
