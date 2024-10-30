@@ -1,5 +1,5 @@
 /* powermenu.rasi */
-@import "catppuccin-mocha.rasi"  /* Importe o tema base */
+@import "catppuccin-mocha" 
 
 configuration {
     show-icons: false;
