@@ -2,7 +2,12 @@
 
 # Creating lock image
 # We use maim to take a picture of the screen, then we give it a pixelated feel with gm
-IMG="/tmp/lock_screen.png" && maim "$IMG" && gm convert $IMG -scale 10% -scale 1000% -fill black -colorize 25% $IMG
+
+IMG="/tmp/lock_screen.png"
+if [ ! -f "$IMG" ]; then
+    # We check if the image does not exist before creating to prevent overwriting every config reload
+    maim "$IMG" && gm convert $IMG -scale 10% -scale 1000% -fill black -colorize 25% $IMG
+fi
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
