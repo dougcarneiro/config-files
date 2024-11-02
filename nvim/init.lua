@@ -1013,6 +1013,7 @@ require('lazy').setup({
 
         -- Linters
         'flake8',
+        'djlint',
 
         -- LSP
         'pyright',
