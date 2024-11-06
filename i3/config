@@ -67,7 +67,6 @@ bindsym XF86AudioStop exec --no-startup-id playerctl stop && $refresh_i3status
 
 # Brightness
 bindsym XF86MonBrightnessUp exec --no-startup-id ~/.config/i3/scripts/brightness-change.sh --raise
-
 bindsym XF86MonBrightnessDown exec --no-startup-id ~/.config/i3/scripts/brightness-change.sh --lower
 
 # Use Mouse+$mod to drag floating windows to their wanted position
