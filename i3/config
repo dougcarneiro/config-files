@@ -66,9 +66,9 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl previous && $refresh_i3stat
 bindsym XF86AudioStop exec --no-startup-id playerctl stop && $refresh_i3status
 
 # Brightness
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl s $(($(brightnessctl g -P)+5))% && BRIGHTNESS=$(brightnessctl g -P) && notify-send "Brightness $BRIGHTNESS%" -i $HOME/.config/dunst/icons/preferences-system-brightness-lock.svg --expire-time 5000 --hint=string:x-canonical-private-synchronous:"unique_id" --hint=int:value:$BRIGHTNESS -u low && echo "$BRIGHTNESS" > ~/.config/i3/.brightness-value
+bindsym XF86MonBrightnessUp exec --no-startup-id ~/.config/i3/scripts/brightness-change.sh --raise
 
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl s $(($(brightnessctl g -P)-5))% && BRIGHTNESS=$(brightnessctl g -P) && notify-send "Brightness $BRIGHTNESS%" -i $HOME/.config/dunst/icons/preferences-system-brightness-lock.svg --expire-time 5000 --hint=string:x-canonical-private-synchronous:"unique_id" --hint=int:value:$BRIGHTNESS -u low && echo "$BRIGHTNESS" > ~/.config/i3/.brightness-value
+bindsym XF86MonBrightnessDown exec --no-startup-id ~/.config/i3/scripts/brightness-change.sh --lower
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
