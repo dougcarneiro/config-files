@@ -201,6 +201,7 @@ end
 
 vim.keymap.set('n', '<leader>td', toggle_diagnostic, { silent = true, noremap = true, desc = 'Toggle diagnostics' })
 vim.keymap.set('n', '<leader>tv', toggle_diag_virtual_text, { silent = true, noremap = true, desc = 'Toggle virtual text' })
+vim.keymap.set('n', '<leader>tc', ':ColorizerToggle<CR>', { silent = true, noremap = true, desc = 'Toggle color highlighter' })
 
 -- Save
 vim.keymap.set('n', '<C-s>', ':w<CR>', { silent = true, noremap = true, desc = 'Write to buffer' })
@@ -1556,6 +1557,13 @@ require('lazy').setup({
         ft = { 'markdown', 'Avante' },
       },
     },
+  },
+  {
+    -- Color highlighter for Neovim
+    'norcalli/nvim-colorizer.lua',
+    config = function()
+      require('colorizer').setup()
+    end,
   },
 
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
