@@ -2,7 +2,9 @@
 
 killall -q polybar
 
-~/.config/polybar/scripts/brightness_notify.sh
+# ~/.config/polybar/scripts/brightness_notify.sh
+
+source ~/.config/polybar/scripts/cpu_temp_path.sh
 
 if type "xrandr"; then
   for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
