@@ -15,3 +15,6 @@
 
 # Setting laptop brightness level correctly based on our last value
 ~/.config/i3/scripts/brightness-initial-setup.sh
+
+# Ensuring that keyboard settings are in fact being applied
+~/.config/i3/scripts/keyboard.sh
