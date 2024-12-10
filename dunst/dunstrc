@@ -2,18 +2,18 @@
 timeout = 0
 
 [urgency_low]
-frame_color = "#cba6f7"
-background = "#1e1e2e"
+frame_color = "#81a1c1"
+background = "#2e3440"
 foreground = "#cdd6f4"
 
 [urgency_normal]
-frame_color = "#cba6f7"
-background = "#1e1e2e"
+frame_color = "#81a1c1"
+background = "#2e3440"
 foreground = "#cdd6f4"
 
 [urgency_critical]
-frame_color = "#cba6f7"
-background = "#1e1e2e"
+frame_color = "#81a1c1"
+background = "#2e3440"
 foreground = "#cdd6f4"
 
 [global]
@@ -31,7 +31,7 @@ padding = 8
 width = 400   # Largura da notificação
 height = 150  # Altura da notificação
 separator_height = 2
-format = "<span foreground='#f7b1c3'><b>%s</b></span>\n%b"
+format = "<span foreground='#cdd6f4'><b>%s</b></span>\n%b"
 show_indicators = false
 icon_position = left
 vertical_alignment = top

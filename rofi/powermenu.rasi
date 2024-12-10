@@ -1,5 +1,5 @@
 /* powermenu.rasi */
-@import "catppuccin-mocha" 
+@import "nord-custom" 
 
 configuration {
     show-icons: false;

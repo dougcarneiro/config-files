@@ -1,5 +1,4 @@
 #!/bin/bash
 
-wallpaper=~/Pictures/Wallpapers/21:9/undefined\ -\ Imgur\ \(1\).jpg
-
-feh --bg-center "$wallpaper"
+wallpaper=~/Pictures/Wallpapers/21:9/Nordic-mountain-wallpaper.jpg
+feh --bg-scale "$wallpaper"

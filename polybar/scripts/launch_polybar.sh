@@ -2,6 +2,8 @@
 
 killall -q polybar
 
+sleep 1
+
 # ~/.config/polybar/scripts/brightness_notify.sh
 
 source ~/.config/polybar/scripts/cpu_temp_path.sh

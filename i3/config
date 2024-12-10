@@ -239,12 +239,56 @@ set $base      #1e1e2e
 set $mantle    #181825
 set $crust     #11111b
 
+set $nord0  #2E3440  # Base
+set $nord1  #3B4252  # Surface1
+set $nord2  #434C5E  # Surface2
+set $nord3  #4C566A  # Overlay0
+set $nord4  #D8DEE9  # Text
+set $nord5  #E5E9F0  # Subtext0
+set $nord6  #ECEFF4  # Subtext1
+set $nord7  #8FBCBB  # Teal
+set $nord8  #88C0D0  # Sky
+set $nord9  #81A1C1  # Blue
+set $nord10 #5E81AC  # Sapphire
+set $nord11 #BF616A  # Red
+set $nord12 #D08770  # Peach
+set $nord13 #EBCB8B  # Yellow
+set $nord14 #A3BE8C  # Green
+set $nord15 #B48EAD  # Mauve
+
 
 # target                 title     bg    text      indicator    border
-client.focused           $mantle   $mauve $mantle  $rosewater $mauve
-client.focused_inactive  $overlay0 $base  $text    $rosewater $overlay0
-client.unfocused         $overlay0 $base  $text    $rosewater $overlay0
-client.urgent            $peach    $base  $peach   $overlay0  $peach
-client.placeholder       $overlay0 $base  $text    $overlay0  $overlay0
-client.background        $base
+# client.focused           $mantle   $mauve $mantle  $rosewater $mauve
+# client.focused_inactive  $overlay0 $base  $text    $rosewater $overlay0
+# client.unfocused         $overlay0 $base  $text    $rosewater $overlay0
+# client.urgent            $peach    $base  $peach   $overlay0  $peach
+# client.placeholder       $overlay0 $base  $text    $overlay0  $overlay0
+# client.background        $base
 
+# Nord theme
+set $base      #2E3440
+set $mantle    #3B4252
+set $crust     #434C5E
+set $overlay0  #4C566A
+set $overlay1  #D8DEE9
+set $overlay2  #E5E9F0
+set $text      #ECEFF4
+set $subtext0  #D8DEE9
+set $subtext1  #E5E9F0
+set $red       #BF616A
+set $peach     #D08770
+set $yellow    #EBCB8B
+set $green     #A3BE8C
+set $teal      #8FBCBB
+set $sky       #88C0D0
+set $sapphire  #5E81AC
+set $blue      #81A1C1
+set $mauve     #B48EAD
+
+# Target                 title     bg       text      indicator    border
+client.focused           $mantle   $blue    $mantle   $text        $blue
+client.focused_inactive  $overlay0 $base    $subtext0 $blue        $overlay0
+client.unfocused         $overlay0 $base    $subtext0 $overlay0    $overlay0
+client.urgent            $red      $base    $red      $overlay0    $red
+client.placeholder       $overlay0 $base    $subtext0 $overlay0    $overlay0
+client.background        $base
