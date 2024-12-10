@@ -105,7 +105,19 @@ vim.g.have_nerd_font = true
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
-vim.opt.relativenumber = true
+local relative_lines_status = true
+vim.opt.relativenumber = relative_lines_status -- initialize nvim with relativenumber on
+
+local function toggle_relative_lines()
+  relative_lines_status = not relative_lines_status
+  if relative_lines_status then
+    vim.opt.relativenumber = true
+    print 'Displaying relative line number'
+  else
+    vim.opt.relativenumber = false
+    print 'Displaying absolute line number'
+  end
+end
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -202,6 +214,7 @@ end
 vim.keymap.set('n', '<leader>td', toggle_diagnostic, { silent = true, noremap = true, desc = 'Toggle diagnostics' })
 vim.keymap.set('n', '<leader>tv', toggle_diag_virtual_text, { silent = true, noremap = true, desc = 'Toggle virtual text' })
 vim.keymap.set('n', '<leader>tc', ':ColorizerToggle<CR>', { silent = true, noremap = true, desc = 'Toggle color highlighter' })
+vim.keymap.set('n', '<leader>tr', toggle_relative_lines, { silent = true, noremap = true, desc = 'Toggle relative lines' })
 
 -- Save
 vim.keymap.set('n', '<C-s>', ':w<CR>', { silent = true, noremap = true, desc = 'Write to buffer' })
