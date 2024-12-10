@@ -206,6 +206,9 @@ vim.keymap.set('n', '<leader>tc', ':ColorizerToggle<CR>', { silent = true, norem
 -- Save
 vim.keymap.set('n', '<C-s>', ':w<CR>', { silent = true, noremap = true, desc = 'Write to buffer' })
 
+-- Reload buffer
+vim.keymap.set('n', '<M-r>', ':w<CR>', { silent = true, noremap = true, desc = 'Reaload buffer' })
+
 -- Quickfix List
 vim.keymap.set('n', ']o', ':copen<CR>', { silent = true, noremap = true, desc = 'Open Quickfix list' })
 vim.keymap.set('n', ']c', ':cclose<CR>', { silent = true, noremap = true, desc = 'Close Quickfix list' })
