@@ -26,6 +26,8 @@ exec --no-startup-id xrdb -merge ~/.Xresources
 
 exec --no-startup-id dunst
 
+exec --no-startup-id blueman-applet
+
 # Loading rofi scripts
 bindsym $mod+Shift+e exec ~/.config/rofi/scripts/powermenu.sh
 
