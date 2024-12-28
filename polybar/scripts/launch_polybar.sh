@@ -2,7 +2,7 @@
 
 killall -q polybar
 
-sleep 1
+sleep 2
 
 # ~/.config/polybar/scripts/brightness_notify.sh
 
