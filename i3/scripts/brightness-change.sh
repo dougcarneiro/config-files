@@ -34,7 +34,7 @@ brightnessctl s "$brightness%" && \
 new_brightness=$(get_brightness) && \
 notify-send "Brightness $new_brightness%" \
   -i "$HOME/.config/dunst/icons/preferences-system-brightness-lock.svg" \
-  --expire-time=5000 \
+  --expire-time=3000 \
   --hint=string:x-canonical-private-synchronous:"unique_id" \
   --hint=int:value:$new_brightness \
   -u low && \

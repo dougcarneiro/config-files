@@ -32,31 +32,31 @@ case "$1" in
         pactl set-sink-volume @DEFAULT_SINK@ +5%
         VOLUME=$(get_volume)
         ICON=$(get_volume_icon $VOLUME)
-        notify-send "Volume $VOLUME%" -i $ICON --expire-time=5000 --hint=string:x-canonical-private-synchronous:"unique_id" --hint=int:value:$VOLUME -u low
+        notify-send "Volume $VOLUME%" -i $ICON --expire-time=3000 --hint=string:x-canonical-private-synchronous:"unique_id" --hint=int:value:$VOLUME -u low
         ;;
     --lower)
         pactl set-sink-volume @DEFAULT_SINK@ -5%
         VOLUME=$(get_volume)
         ICON=$(get_volume_icon $VOLUME)
-        notify-send "Volume $VOLUME%" -i $ICON --expire-time=5000 --hint=string:x-canonical-private-synchronous:"unique_id" --hint=int:value:$VOLUME -u low
+        notify-send "Volume $VOLUME%" -i $ICON --expire-time=3000 --hint=string:x-canonical-private-synchronous:"unique_id" --hint=int:value:$VOLUME -u low
         ;;
     --toggle-mute)
         pactl set-sink-mute @DEFAULT_SINK@ toggle
         VOLUME=$(get_volume)
         ICON=$(get_volume_icon $VOLUME)
         if pactl get-sink-mute @DEFAULT_SINK@ | grep -q "yes"; then
-            notify-send "Volume MUTED" -i $ICON --expire-time=5000 --hint=string:x-canonical-private-synchronous:"unique_id" --hint=int:value:0 -u low
+            notify-send "Volume MUTED" -i $ICON --expire-time=3000 --hint=string:x-canonical-private-synchronous:"unique_id" --hint=int:value:0 -u low
         else
-            notify-send "Volume $VOLUME%" -i $ICON --expire-time=5000 --hint=string:x-canonical-private-synchronous:"unique_id" --hint=int:value:$VOLUME -u low
+            notify-send "Volume $VOLUME%" -i $ICON --expire-time=3000 --hint=string:x-canonical-private-synchronous:"unique_id" --hint=int:value:$VOLUME -u low
         fi
         ;;
     --toggle-mic-mute)
         pactl set-source-mute @DEFAULT_SOURCE@ toggle
         if pactl get-source-mute @DEFAULT_SOURCE@ | grep -q "yes"; then
-            notify-send "Microphone MUTED" -i "$HOME/.config/dunst/icons/microphone-sensitivity-muted-symbolic.svg" --expire-time=5000 --hint=string:x-canonical-private-synchronous:"unique_id" --hint=int:value:0 -u low
+            notify-send "Microphone MUTED" -i "$HOME/.config/dunst/icons/microphone-sensitivity-muted-symbolic.svg" --expire-time=3000 --hint=string:x-canonical-private-synchronous:"unique_id" --hint=int:value:0 -u low
         else
             VOLUME_MIC=$(get_volume_mic)
-            notify-send "Microphone unmuted" -i "$HOME/.config/dunst/icons/audio-input-microphone-symbolic.svg" --expire-time=5000 --hint=string:x-canonical-private-synchronous:"unique_id" --hint=int:value:$VOLUME_MIC -u low
+            notify-send "Microphone unmuted" -i "$HOME/.config/dunst/icons/audio-input-microphone-symbolic.svg" --expire-time=3000 --hint=string:x-canonical-private-synchronous:"unique_id" --hint=int:value:$VOLUME_MIC -u low
         fi
         ;;
 
