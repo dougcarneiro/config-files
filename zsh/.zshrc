@@ -80,7 +80,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(asdf dirhistory sudo history zsh-autosuggestions)
+plugins=(dirhistory sudo history zsh-autosuggestions zsh-completions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -169,6 +169,10 @@ export PATH=$HOME/.yarn/bin:$PATH
 export PATH="$PATH:$HOME/.dotnet/tools"
 export DOTNET_ROOT=$(asdf where dotnet-core)
 source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+
+fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
+autoload -Uz compinit && compinit
 
 export EDITOR="nvim"
 export VISUAL="nvim"
