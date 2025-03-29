@@ -730,17 +730,7 @@ require('lazy').setup({
   { -- Plugin to make jdtls config less painful
     'mfussenegger/nvim-jdtls',
   },
-
-  { -- Flutter tools plugin
-    'akinsho/flutter-tools.nvim',
-    lazy = false,
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'stevearc/dressing.nvim', -- optional for vim.ui.select
-    },
-    config = true,
-  },
-
+  
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
@@ -887,46 +877,6 @@ require('lazy').setup({
         -- vim.fn.expand '$HOME/tools/flutter/',
       }
 
-      lsp_config['dcmls'].setup {
-        capabilities = capabilities,
-        cmd = {
-          'dcm',
-          --'start-server',
-        },
-        filetypes = { 'dart', 'yaml' },
-        settings = {
-          dart = {
-            -- analysisExcludedFolders = dartExcludedFolders,
-          },
-        },
-      }
-
-      lsp_config['dartls'].setup {
-        capabilities = capabilities,
-        cmd = {
-          'dart',
-          'language-server',
-          '--protocol=lsp',
-          -- "--port=8123",
-          -- "--instrumentation-log-file=/Users/robertbrunhage/Desktop/lsp-log.txt",
-        },
-        filetypes = { 'dart' },
-        init_options = {
-          onlyAnalyzeProjectsWithOpenFiles = false,
-          suggestFromUnimportedLibraries = true,
-          closingLabels = true,
-          outline = false,
-          flutterOutline = false,
-        },
-        settings = {
-          dart = {
-            -- analysisExcludedFolders = dartExcludedFolders,
-            updateImportsOnRename = true,
-            completeFunctionCalls = true,
-            showTodos = true,
-          },
-        },
-      }
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
       --
