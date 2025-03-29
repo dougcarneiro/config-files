@@ -110,47 +110,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Pomodoro-CLI
-# Requires https://github.com/caarlos0/timer to be installed
-# Requires spd-say to be installed (speech-dispatcher-utils)
-declare -A pomo_options
-pomo_options["study"]="25"
-pomo_options["work"]="45"
-pomo_options["break"]="10"
-pomo_options["light-break"]="5"
 
-pomodoro-cli () {
-  if [ -n "$1" -a -n "${pomo_options["$1"]}" ]; then
-  val=$1
-   case $val in
-      "work")
-        message="we are working now 💼"
-        ;;
-      "break")
-        message="it's break time, alright 😌"
-        ;;
-      "light-break")
-        message="let's take a small break 🕔"
-        ;;
-      "study")
-        message="let's study now 📚"
-        ;;
-      *)
-        message="unknown option"
-        ;;
-    esac
-    echo "$message" | lolcat
-    timer --format 24h ${pomo_options["$val"]}m
-      if [ $? -eq 0 ]; then
-      spd-say -i -80 "'$val' session done"
-    fi
-  fi
-}
-
-alias pomo-wo="pomodoro-cli 'work'"
-alias pomo-br="pomodoro-cli 'break'"
-alias pomo-st="pomodoro-cli 'study'"
-alias pomo-lbr="pomodoro-cli 'light-break'"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -182,3 +142,15 @@ export OPENAI_API_KEY=
 
 
 alias gnome-control-center="XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
+
+# SCRIPTS
+
+# Pomodoro CLI
+source "$HOME/scripts/pomodoro-cli.zsh"
+alias pomo-wo="pomodoro-cli 'work'"
+alias pomo-br="pomodoro-cli 'break'"
+alias pomo-st="pomodoro-cli 'study'"
+alias pomo-lbr="pomodoro-cli 'light-break'"
+
+# Backup
+source "$HOME/scripts/backup.zsh"
