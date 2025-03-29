@@ -595,15 +595,17 @@ require('lazy').setup({
   },
 
   { -- Plugin to save and load sessions
-    'rmagatti/auto-session',
-    config = function()
-      require('auto-session').setup {
-        log_level = 'error',
-        auto_session_suppress_dirs = { '~/', '~/Projects', '~/Downloads', '~/Documents', '/' },
-        auto_restore_enabled = true,
-      }
-    end,
-    vim.keymap.set('n', '<leader>R', '<cmd>:SessionRestore<cr>'),
+      'rmagatti/auto-session',
+      lazy = false,
+
+      ---enables autocomplete for opts
+      ---@module "auto-session"
+      ---@type AutoSession.Config
+      opts = {
+        suppressed_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
+        -- log_level = 'debug',
+      };
+      vim.keymap.set('n', '<leader>R', '<cmd>:SessionRestore<cr>'),
   },
 
   { -- Python virtual env loader
