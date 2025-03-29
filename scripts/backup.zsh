@@ -25,7 +25,6 @@ Opções:
     "$HOME/ROMS/"
     "$HOME/exercism/"
     "$HOME/config-files/"
-    "$HOME/scripts/"
     "$HOME/wireguard-keys/"
     "$HOME/.ssh/"
     "$HOME/.local/"
