@@ -460,8 +460,8 @@ require('lazy').setup({
         { '<leader>v_', hidden = true },
         { '<leader>w', group = '[W]orkspace' },
         { '<leader>w_', hidden = true },
-        { '<leader>a', group = '[A]vante' },
-        { '<leader>a_', hidden = true },
+        { '<leader>-', group = 'Oil' },
+        { '<leader>-_', hidden = true },
       }
     end,
   },
