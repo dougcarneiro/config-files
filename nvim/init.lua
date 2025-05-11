@@ -462,6 +462,8 @@ require('lazy').setup({
         { '<leader>w_', hidden = true },
         { '<leader>-', group = 'Oil' },
         { '<leader>-_', hidden = true },
+        { '<leader>o', group = '[L]ove2d' },
+        { '<leader>-o', hidden = true },
       }
     end,
   },
@@ -1440,6 +1442,17 @@ require('lazy').setup({
       require('colorizer').setup()
     end,
   },
+    -- Love2d LSP
+  {
+    "S1M0N38/love2d.nvim",
+    event = "VeryLazy",
+    opts = { },
+    keys = {
+      { "<leader>o", ft = "lua", desc = "LÖVE" },
+      { "<leader>or", "<cmd>LoveRun<cr>", ft = "lua", desc = "Run LÖVE" },
+      { "<leader>os", "<cmd>LoveStop<cr>", ft = "lua", desc = "Stop LÖVE" },
+    },
+  }
 
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
