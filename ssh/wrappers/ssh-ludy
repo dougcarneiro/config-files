@@ -1,0 +1,3 @@
+#!/bin/bash
+SSH_AUTH_SOCK= exec ssh -i ~/.ssh/id_ed25519_ludy -o IdentitiesOnly=yes "$@"
+
