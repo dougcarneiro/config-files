@@ -1,0 +1,7 @@
+[user]
+	email = douglas.carneiro@ludy.tech
+	name = Douglas Carneiro
+
+[core]
+    sshCommand = ~/.ssh/wrappers/ssh-ludy
+

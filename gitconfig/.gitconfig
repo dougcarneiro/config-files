@@ -1,0 +1,6 @@
+[user]
+	email = douglas.ul@gmail.com
+	name = Douglas Carneiro
+
+[includeIf "gitdir:~/Work/Elfa/**"]
+    path = ~/.gitconfig-ludy
