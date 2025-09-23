@@ -597,17 +597,17 @@ require('lazy').setup({
   },
 
   { -- Plugin to save and load sessions
-      'rmagatti/auto-session',
-      lazy = false,
+    'rmagatti/auto-session',
+    lazy = false,
 
-      ---enables autocomplete for opts
-      ---@module "auto-session"
-      ---@type AutoSession.Config
-      opts = {
-        suppressed_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
-        -- log_level = 'debug',
-      };
-      vim.keymap.set('n', '<leader>R', '<cmd>:SessionRestore<cr>'),
+    ---enables autocomplete for opts
+    ---@module "auto-session"
+    ---@type AutoSession.Config
+    opts = {
+      suppressed_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
+      -- log_level = 'debug',
+    },
+    vim.keymap.set('n', '<leader>R', '<cmd>:SessionRestore<cr>'),
   },
 
   { -- Python virtual env loader
@@ -732,7 +732,7 @@ require('lazy').setup({
   { -- Plugin to make jdtls config less painful
     'mfussenegger/nvim-jdtls',
   },
-  
+
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
@@ -1442,17 +1442,29 @@ require('lazy').setup({
       require('colorizer').setup()
     end,
   },
-    -- Love2d LSP
+  -- Love2d LSP
   {
-    "S1M0N38/love2d.nvim",
-    event = "VeryLazy",
-    opts = { },
+    'S1M0N38/love2d.nvim',
+    event = 'VeryLazy',
+    opts = {},
     keys = {
-      { "<leader>o", ft = "lua", desc = "LÖVE" },
-      { "<leader>or", "<cmd>LoveRun<cr>", ft = "lua", desc = "Run LÖVE" },
-      { "<leader>os", "<cmd>LoveStop<cr>", ft = "lua", desc = "Stop LÖVE" },
+      { '<leader>o', ft = 'lua', desc = 'LÖVE' },
+      { '<leader>or', '<cmd>LoveRun<cr>', ft = 'lua', desc = 'Run LÖVE' },
+      { '<leader>os', '<cmd>LoveStop<cr>', ft = 'lua', desc = 'Stop LÖVE' },
     },
-  }
+  },
+
+  -- Macros management
+  {
+    'kr40/nvim-macros',
+    cmd = { 'MacroSave', 'MacroYank', 'MacroSelect', 'MacroDelete' },
+    opts = {
+
+      json_file_path = vim.fs.normalize(vim.fn.stdpath 'config' .. '/macros.json'), -- Location where the macros will be stored
+      default_macro_register = 'q', -- Use as default register for :MacroYank and :MacroSave and :MacroSelect Raw functions
+      json_formatter = 'none', -- can be "none" | "jq" | "yq" used to pretty print the json file (jq or yq must be installed!)
+    },
+  },
 
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
