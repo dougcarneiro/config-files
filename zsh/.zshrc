@@ -117,7 +117,7 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$PATH
 export PATH="$PATH:$HOME/.local/bin"
-export PHP_HOME=$(asdf where php)
+#export PHP_HOME=$(asdf where php)
 export PATH=$PHP_HOME/.composer/vendor/bin:$PATH
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$ANDROID_HOME/platform-tools:$PATH
@@ -128,8 +128,11 @@ export PATH=$JAVA_HOME/bin:$PATH
 export PATH=$HOME/.yarn/bin:$PATH
 export PATH="$PATH:$HOME/.dotnet/tools"
 export DOTNET_ROOT=$(asdf where dotnet-core)
-source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
+export NODEJS_HOME=$(asdf where nodejs)
+export PATH="${NODEJS_HOME}/bin:$PATH"
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+
+source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
 
 fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
 autoload -Uz compinit && compinit
