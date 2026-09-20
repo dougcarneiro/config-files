@@ -283,6 +283,13 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- Comentar/Descomentar com CTRL + / (enviado como <C-_> na maioria dos terminais)
+vim.keymap.set('n', '<C-_>', function()
+  require('Comment.api').toggle.linewise.current()
+end, { desc = 'Comment: Toggle line' })
+
+vim.keymap.set('v', '<C-_>', "<ESC><CMD>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", { desc = 'Comment: Toggle selection' })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -619,9 +626,8 @@ require('lazy').setup({
       { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
     },
     lazy = false,
-    branch = 'regexp', -- This is the regexp branch, use this for the new version
     config = function()
-      require('venv-selector').setup()
+      require('venv-selector').setup {}
     end,
     keys = {
       -- Keymap to open VenvSelector to pick a venv.
@@ -742,7 +748,6 @@ require('lazy').setup({
       'WhoIsSethDaniel/mason-tool-installer.nvim',
       {
         'SmiteshP/nvim-navbuddy',
-        commit = 'f34237e', -- installing from this commit because latest commit is using nvim api 0.11 and I am still using 0.9
         dependencies = {
           'SmiteshP/nvim-navic',
           'MunifTanjim/nui.nvim',
@@ -870,15 +875,6 @@ require('lazy').setup({
       --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
       local capabilities = vim.tbl_deep_extend('force', vim.lsp.protocol.make_client_capabilities(), require('cmp_nvim_lsp').default_capabilities())
 
-      -- Dart LSP config needs to be a little different than the others
-      local lsp_config = require 'lspconfig'
-      local dartExcludedFolders = {
-        -- vim.fn.expand '$HOME/AppData/Local/Pub/Cache',
-        -- vim.fn.expand '$HOME/.pub-cache',
-        -- vim.fn.expand '/opt/homebrew/',
-        -- vim.fn.expand '$HOME/tools/flutter/',
-      }
-
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
       --
@@ -937,29 +933,29 @@ require('lazy').setup({
             },
           },
         },
-      }
 
-      require('lspconfig')['omnisharp'].setup {
-        cmd = { 'omnisharp', '--languageserver', '--hostPID', tostring(vim.fn.getpid()) },
-        filetypes = { 'cs', 'vb' },
-        capabilities = capabilities,
-        settings = {
-          omnisharp = {
-            enableRoslynAnalyzers = true,
-            organizeImportsOnFormat = true,
-            enableEditorConfigSupport = true,
+        omnisharp = {
+          cmd = { 'omnisharp', '--languageserver', '--hostPID', tostring(vim.fn.getpid()) },
+          filetypes = { 'cs', 'vb' },
+          settings = {
+            omnisharp = {
+              enableRoslynAnalyzers = true,
+              organizeImportsOnFormat = true,
+              enableEditorConfigSupport = true,
+            },
           },
+          on_attach = function(client, bufnr)
+            if client.server_capabilities.documentFormattingProvider then
+              vim.api.nvim_create_autocmd('BufWritePre', {
+                group = vim.api.nvim_create_augroup('LspFormatting_' .. bufnr, { clear = true }),
+                buffer = bufnr,
+                callback = function()
+                  vim.lsp.buf.format { async = true }
+                end,
+              })
+            end
+          end,
         },
-        on_attach = function(client, bufnr)
-          if client.server_capabilities.documentFormattingProvider then
-            vim.cmd [[
-        augroup LspFormatting
-          autocmd! * <buffer>
-          autocmd BufWritePre <buffer> lua vim.lsp.buf.format({ async = true })
-        augroup END
-      ]]
-          end
-        end,
       }
       -- Ensure the servers and tools above are installed
       --  To check the current status of installed tools and/or manually install
@@ -989,7 +985,7 @@ require('lazy').setup({
         -- LSP
         'pyright',
         'jdtls',
-        'gopls',
+        -- 'gopls',
         -- 'bash-language-server',
         'css-lsp',
         'eslint-lsp',
@@ -997,28 +993,26 @@ require('lazy').setup({
         'html-lsp',
         -- 'tailwindcss-language-server',
         'typescript-language-server',
-        'clangd',
+        -- 'clangd',
         'phpactor',
         'vetur-vls',
         'omnisharp',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
+      -- Configure each server via vim.lsp.config (nvim 0.11+ API)
+      vim.lsp.config('*', { capabilities = capabilities })
+      for server_name, server in pairs(servers) do
+        server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+        vim.lsp.config(server_name, server)
+      end
+
+      -- mason-lspconfig will auto-enable installed servers via vim.lsp.enable().
+      -- jdtls is excluded because the nvim-jdtls plugin manages it, otherwise we'd end
+      -- up with two clients attached to the buffer.
       require('mason-lspconfig').setup {
-        handlers = {
-          function(server_name)
-            -- Adding conditional logic to not auto load jdtls
-            -- For jdtls loading, we will use the `nvim-jdtls` plugin
-            -- This is necessary or otherwise we will end up with two jdtls clients attached to buffer
-            if server_name ~= 'jdtls' then
-              local server = servers[server_name] or {}
-              -- This handles overriding only values explicitly passed
-              -- by the server configuration above. Useful when disabling
-              -- certain features of an LSP (for example, turning off formatting for tsserver)
-              server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-              require('lspconfig')[server_name].setup(server)
-            end
-          end,
+        automatic_enable = {
+          exclude = { 'jdtls' },
         },
       }
     end,
@@ -1323,6 +1317,7 @@ require('lazy').setup({
 
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
+    branch = 'master',
     build = ':TSUpdate',
     opts = {
       autotag = {
@@ -1436,11 +1431,10 @@ require('lazy').setup({
     end,
   },
   {
-    -- Color highlighter for Neovim
-    'norcalli/nvim-colorizer.lua',
-    config = function()
-      require('colorizer').setup()
-    end,
+    -- Color highlighter for Neovim (catgoose fork — actively maintained)
+    'catgoose/nvim-colorizer.lua',
+    event = 'BufReadPre',
+    opts = {},
   },
   -- Love2d LSP
   {

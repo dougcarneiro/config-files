@@ -198,3 +198,10 @@ typeset -g POWERLEVEL9K_CONFIG_FILE=${${(%):-%x}:a}
 
 (( ${#p10k_config_opts} )) && setopt ${p10k_config_opts[@]}
 'builtin' 'unset' 'p10k_config_opts'
+# Custom logic to detect Distrobox/Toolbox
+if [[ -f /run/.containerenv ]]; then
+  # Show a special icon (e.g., ⬢) and name when inside
+  typeset -g POWERLEVEL9K_CONTEXT_VISUAL_IDENTIFIER_EXPANSION='⬢'
+  # Optional: change the color of the context segment
+  typeset -g POWERLEVEL9K_CONTEXT_FOREGROUND=3
+fi

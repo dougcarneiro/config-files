@@ -118,16 +118,12 @@ source $ZSH/oh-my-zsh.sh
 export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$PATH
 export PATH="$PATH:$HOME/.local/bin"
 #export PHP_HOME=$(asdf where php)
-export PATH=$PHP_HOME/.composer/vendor/bin:$PATH
-export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$ANDROID_HOME/platform-tools:$PATH
-export PATH=$ANDROID_HOME/tools:$PATH
-export PATH=$ANDROID_HOME/build-tools:$PATH
+#export PATH=$PHP_HOME/.composer/vendor/bin:$PATH
 export JAVA_HOME=$(asdf where java)
 export PATH=$JAVA_HOME/bin:$PATH
 export PATH=$HOME/.yarn/bin:$PATH
-export PATH="$PATH:$HOME/.dotnet/tools"
-export DOTNET_ROOT=$(asdf where dotnet-core)
+#export PATH="$PATH:$HOME/.dotnet/tools"
+#export DOTNET_ROOT=$(asdf where dotnet-core)
 export NODEJS_HOME=$(asdf where nodejs)
 export PATH="${NODEJS_HOME}/bin:$PATH"
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
@@ -145,6 +141,7 @@ export OPENAI_API_KEY=
 
 
 alias gnome-control-center="XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
+alias docker-compose="docker compose"
 
 # SCRIPTS
 
@@ -157,3 +154,16 @@ alias pomo-lbr="pomodoro-cli 'light-break'"
 
 # Backup
 source "$HOME/scripts/backup.zsh"
+
+# Tauris-safe — wrappers locais (tt/tl/tc) com cap de memória via cgroup.
+# Só existe dentro do distrobox neurox-f43; no host o -f falha silencioso.
+[[ -f "$HOME/scripts/tauris-safe.zsh" ]] && source "$HOME/scripts/tauris-safe.zsh"
+
+# Distrobox
+export NEUROX_HOME="/home/douglas/.local/share/distrobox-homes/neurox/"
+alias distrobox-neurox="distrobox enter neurox-f43 -- $SHELL -lc 'cd $NEUROX_HOME && exec $SHELL -i'"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/douglas/.local/bin:$PATH"

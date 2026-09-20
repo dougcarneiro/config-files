@@ -28,6 +28,7 @@ config.window_background_opacity = 0.85
 config.max_fps = 60
 config.prefer_egl = true
 
+-- Tmux
 config.default_prog = { "tmux", "new-session", "-A", "-s", "misc" }
 
 return config
