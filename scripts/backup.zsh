@@ -51,7 +51,6 @@ Diretórios inexistentes são pulados automaticamente."
     "$HOME/.zshrc"
     "$HOME/.p10k.zsh"
     "$HOME/.tmux.conf"
-    "$HOME/.local/applications/"
     "$HOME/.aws/"
     "$HOME/.local/share/"
     "$HOME/.steam/"
@@ -61,9 +60,9 @@ Diretórios inexistentes são pulados automaticamente."
 
   # --- filtra o que existe; registra o que faltou ---
   local -a backup_dirs=() missing=()
-  local path
-  for path in "${candidates[@]}"; do
-    if [[ -e "$path" ]]; then backup_dirs+=("$path"); else missing+=("$path"); fi
+  local p
+  for p in "${candidates[@]}"; do
+    if [[ -e "$p" ]]; then backup_dirs+=("$p"); else missing+=("$p"); fi
   done
   if (( ${#backup_dirs} == 0 )); then
     echo "❌ Nenhum dos caminhos existe — nada a fazer."
