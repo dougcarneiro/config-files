@@ -161,7 +161,7 @@ source "$HOME/scripts/backup.zsh"
 
 # Distrobox
 export NEUROX_HOME="/home/douglas/.local/share/distrobox-homes/neurox/"
-alias distrobox-neurox="distrobox enter neurox-f43 -- $SHELL -lc 'cd $NEUROX_HOME && exec $SHELL -i'"
+alias distrobox-neurox="distrobox enter neurox -- $SHELL -lc 'cd $NEUROX_HOME && exec $SHELL -i'"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 
