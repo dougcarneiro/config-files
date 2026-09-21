@@ -12,6 +12,16 @@ O que é ignorado (reproduzível): node_modules, venv/.venv, __pycache__,
 caches de dev (.gradle/.next/.turbo/...) e caches de app dentro de .config
 (Cache, GPUCache, Code Cache, Service Worker, Crashpad, ...). O resto do
 perfil dos apps (settings, extensões, bookmarks) é mantido.
+
+Também ignorado: estado atrelado à MÁQUINA (monitors.xml, gvfs-metadata,
+estado de áudio, perfis de cor) — restaurar isso noutro computador quebra o
+GNOME e é regerado sozinho no primeiro login; cofres de credencial (keyring do
+GNOME, FortiClient, tokens de API) já que o .tar.zst não é criptografado; e
+imagens de VM (gnome-boxes, libvirt).
+
+ATENÇÃO: .ssh/, .aws/, wireguard-keys/ e os perfis de navegador CONTINUAM no
+backup, por escolha. O arquivo gerado contém chaves privadas e sessões em
+claro — trate o destino como mídia sensível.
 Diretórios inexistentes são pulados automaticamente."
 
   # --- destino padrão + parsing de argumentos ---
@@ -96,6 +106,35 @@ Diretórios inexistentes são pulados automaticamente."
   # exclusões com caminho exato para não afetar pastas de configuração homônimas em .config/
   exclude_args+=("--exclude=$HOME/.local/share/JetBrains")
   exclude_args+=("--exclude=$HOME/.local/share/nvim")
+
+  # --- estado de máquina/hardware: NÃO restaurável em outro computador ---
+  # Aprendido na marra (2026-09-20): restaurar estes num desktop diferente deixou o
+  # gvfsd-metadata girando a 100% de CPU (33 min de CPU em 42 de vida) e encheu o
+  # monitors.xml com layouts de um notebook (eDP-1) inexistente aqui. Todos são
+  # regerados sozinhos no primeiro login — não há nada a preservar.
+  exclude_args+=("--exclude=$HOME/.config/monitors.xml")             # layout de telas por EDID/conector
+  exclude_args+=("--exclude=$HOME/.local/share/gvfs-metadata")       # metadados do Nautilus por inode
+  exclude_args+=("--exclude=$HOME/.local/share/recently-used.xbel")  # "recentes" com caminhos da máquina antiga
+  exclude_args+=("--exclude=$HOME/.config/pulse")                    # cookie/estado de áudio da máquina
+  exclude_args+=("--exclude=$HOME/.config/wireplumber")              # rotas de áudio por ID de placa
+  exclude_args+=("--exclude=$HOME/.local/share/icc")                 # perfis de cor atrelados ao monitor
+  exclude_args+=("--exclude=$HOME/.local/share/gnome-settings-daemon")
+
+  # --- credenciais: o backup é um tar.zst SEM criptografia ---
+  # Mantidos de propósito (decisão do Douglas): .ssh/, .aws/, wireguard-keys/ e os
+  # perfis de navegador. Excluídos abaixo apenas os cofres de credencial puros e os
+  # tokens de extensão de editor, que não carregam configuração de valor.
+  exclude_args+=("--exclude=$HOME/.local/share/keyrings")            # cofre de senhas do GNOME
+  exclude_args+=("--exclude=$HOME/.config/FortiClient")              # credenciais de VPN
+  exclude_args+=("--exclude=$HOME/.config/Postman")                  # tokens de API (Postman sincroniza pela conta)
+  # só o globalStorage: preserva settings.json e keybindings dos editores
+  exclude_args+=("--exclude=$HOME/.config/Code/User/globalStorage")
+  exclude_args+=("--exclude=$HOME/.config/Cursor/User/globalStorage")
+
+  # --- volume: imagens de VM, recriáveis e enormes (~11 GB) ---
+  # distrobox-homes fica de fora desta lista a pedido — é backupeado normalmente.
+  exclude_args+=("--exclude=$HOME/.local/share/gnome-boxes")         # discos de VM
+  exclude_args+=("--exclude=$HOME/.config/libvirt")                  # storage/definições libvirt
 
   # --- validação do destino ---
   if [[ ! -d "$dest" ]]; then echo "❌ Destino não existe: $dest"; return 1; fi
