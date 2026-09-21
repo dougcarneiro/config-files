@@ -82,10 +82,20 @@ Diretórios inexistentes são pulados automaticamente."
     'Crashpad' 'Crash Reports'
     # caches do Steam dentro de config/ (avatares e cache do browser interno)
     avatarcache htmlcache
+    # steam: jogos instalados (steamapps), cache, logs e dumps
+    steamapps appcache logs dump
+    # lixeira do sistema e flatpaks (aplicativos redownloadáveis)
+    Trash flatpak
+    # caches de pacotes, containers e ambientes virtuais
+    NuGet containers virtualenv umu
   )
   local -a exclude_args=()
   local pattern
   for pattern in "${exclude_patterns[@]}"; do exclude_args+=("--exclude=$pattern"); done
+
+  # exclusões com caminho exato para não afetar pastas de configuração homônimas em .config/
+  exclude_args+=("--exclude=$HOME/.local/share/JetBrains")
+  exclude_args+=("--exclude=$HOME/.local/share/nvim")
 
   # --- validação do destino ---
   if [[ ! -d "$dest" ]]; then echo "❌ Destino não existe: $dest"; return 1; fi
@@ -113,7 +123,7 @@ Diretórios inexistentes são pulados automaticamente."
   # -P mantém caminhos absolutos (necessário p/ /opt e /usr/local/bin);
   #    no restore, o tar extrai nesses caminhos absolutos — extraia com cuidado.
   echo "Criando backup (zstd multi-thread)..."
-  tar -P -I 'zstd -T0 -12' "${exclude_args[@]}" -cvf "$backup_file" "${backup_dirs[@]}"
+  tar -P --ignore-failed-read -I 'zstd -T0 -12' "${exclude_args[@]}" -cvf "$backup_file" "${backup_dirs[@]}"
   local rc=$?
 
   if (( rc == 1 )); then
